@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>业绩报备 - 简化版</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #07c160 0%, #05a452 100%);
+            min-height: 100vh;
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .header h1 { color: #323233; }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ebedf0;
+            border-radius: 8px;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #07c160;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        #status {
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+        .success { color: #155724; background: #d4edda; }
+        .error { color: #721c24; background: #f8d7da; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>每日业绩报备</h1>
+    </div>
+
+    <div class="card">
+        <div id="status">正在加载报备人...</div>
+        <div class="form-group">
+            <label>选择报备人</label>
+            <select id="reporterName">
+                <option value="">加载中...</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        // 显示状态
+        function showStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = message;
+            statusDiv.className = type === 'success' ? 'success' : (type === 'error' ? 'error' : '');
+        }
+
+        // 加载报备人
+        async function loadReporters() {
+            try {
+                showStatus('正在从服务器加载报备人列表...');
+
+                const response = await fetch('reporters.json');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                showStatus(`✓ 成功加载 ${data.length} 个报备人`, 'success');
+
+                // 更新下拉菜单
+                const select = document.getElementById('reporterName');
+                select.innerHTML = '<option value="">请选择你的名字</option>';
+
+                data.forEach(reporter => {
+                    const option = document.createElement('option');
+                    option.value = reporter.id;
+                    option.textContent = reporter.name;
+                    select.appendChild(option);
+                });
+
+                console.log('报备人列表:', data);
+
+            } catch (error) {
+                console.error('加载失败:', error);
+                showStatus(`✗ 加载失败: ${error.message}`, 'error');
+
+                // 显示手动输入选项
+                const select = document.getElementById('reporterName');
+                select.innerHTML = `
+                    <option value="">加载失败，请手动输入姓名</option>
+                    <option value="1">曾艳</option>
+                    <option value="2">刘辉</option>
+                    <option value="3">蔡志建</option>
+                    <option value="4">叶霖</option>
+                    <option value="5">李佳余</option>
+                    <option value="6">刘梦琦</option>
+                    <option value="7">傅泽恩</option>
+                    <option value="8">雍婉聆</option>
+                `;
+            }
+        }
+
+        // 页面加载后执行
+        window.addEventListener('load', () => {
+            loadReporters();
+        });
+    </script>
+</body>
+</html>
