@@ -1,1 +1,59 @@
+[
+  {
+    "id": "1",
+    "name": "曾艳",
+    "dailyTarget": 361290.32,
+    "monthlyTarget": 11200000,
+    "createdAt": "2025-03-11T00:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "name": "刘辉",
+    "dailyTarget": 341935.48,
+    "monthlyTarget": 10600000,
+    "createdAt": "2025-03-11T00:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "name": "蔡志建",
+    "dailyTarget": 230967.74,
+    "monthlyTarget": 7160000,
+    "createdAt": "2025-03-11T00:00:00.000Z"
+  },
+  {
+    "id": "4",
+    "name": "叶霖",
+    "dailyTarget": 387096.77,
+    "monthlyTarget": 12000000,
+    "createdAt": "2025-03-11T00:00:00.000Z"
+  },
+  {
+    "id": "5",
+    "name": "李佳余",
+    "dailyTarget": 48387.10,
+    "monthlyTarget": 1500000,
+    "createdAt": "2025-03-11T00:00:00.000Z"
+  },
+  {
+    "id": "6",
+    "name": "刘梦琦",
+    "dailyTarget": 48387.10,
+    "monthlyTarget": 1500000,
+    "createdAt": "2025-03-11T00:00:00.000Z"
+  },
+  {
+    "id": "7",
+    "name": "傅泽恩",
+    "dailyTarget": 48387.10,
+    "monthlyTarget": 1500000,
+    "createdAt": "2025-03-11T00:00:00.000Z"
+  },
+  {
+    "id": "8",
+    "name": "雍婉聆",
+    "dailyTarget": 48387.10,
+    "monthlyTarget": 1500000,
+    "createdAt": "2025-03-11T00:00:00.000Z"
+  }
+]
 
